@@ -1,4 +1,4 @@
-# 🔥 AI Voice Support Assistant — Powered by FlameAI
+# 🔥 AI Voice Support Assistant — Powered by QUASAR	
 
 A fully production-ready **real-time voice customer support system** powered by:
 
@@ -8,7 +8,8 @@ A fully production-ready **real-time voice customer support system** powered by:
 - **N8N Workflow Engine**  
 - **Supabase Knowledge Base + Logging**
 
-Unlike basic chatbots, this system uses a **multi-stage intelligent pipeline** with memory, knowledge search, strict input security, and real-time streaming. It is designed for **FlameAI’s high-quality customer support, sales automation, and booking flows**.
+Unlike basic chatbots, this system uses a **multi-stage intelligent pipeline** with memory, knowledge search, strict input security, and real-time streaming. It is designed for 
+** high-quality customer support, sales automation, and booking flows**.
 
 ---
 
@@ -156,7 +157,7 @@ If invalid → error branch triggers.
 ### 4. 🤖 AI Processing
 Valid messages go to the Groq-hosted Llama 3.1:
 
-- Custom FlameAI system prompt  
+- Custom system prompt  
 - Vector search through Supabase KB  
 - 10-message session memory  
 - Fast inference via Groq  
