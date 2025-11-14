@@ -1,347 +1,254 @@
-# 🔥 AI Voice Support Assistant — Powered by QUASAR	
+# AI Agent - Premium Chat Interface with Backend
 
-A fully production-ready **real-time voice customer support system** powered by:
+A minimalist, premium AI agent chat interface optimized for mobile devices with a sleek black theme and real-time voice communication backend.
 
-- **Agora Conversational AI** (ASR + voice pipeline)  
-- **ElevenLabs TTS**  
-- **Groq Llama 3.1 LLM**  
-- **N8N Workflow Engine**  
-- **Supabase Knowledge Base + Logging**
+## 🏗️ Architecture
 
-Unlike basic chatbots, this system uses a **multi-stage intelligent pipeline** with memory, knowledge search, strict input security, and real-time streaming. It is designed for 
-** high-quality customer support, sales automation, and booking flows**.
+### Frontend (Client)
+- **Modern Web Interface**: Premium black theme with mobile optimization
+- **Real-time Communication**: Agora RTC SDK for voice calls
+- **WebSocket Client**: Connects to backend for AI processing
+- **ES6 Modules**: Modern JavaScript with tree-shaking support
 
----
+### Backend (Server)
+- **Node.js Server**: Express.js with WebSocket support
+- **Agora Conversational AI**: Real-time voice processing
+- **LLM Integration**: Large Language Model for conversations
+- **TTS Service**: Text-to-Speech for AI responses
+- **Session Management**: Multi-user conversation handling
 
-## 🧠 How This AI Support Agent Works (And Why It’s Better)
+## Features
 
-Most AI support bots simply forward text to an LLM.  
-**This system does much more.**  
+### 🎨 Frontend Design
+- **Premium Black Theme**: Elegant dark color scheme with subtle gradients
+- **Minimalist Interface**: Clean, distraction-free design
+- **Mobile-First**: Fully responsive and optimized for touch devices
+- **Smooth Animations**: Micro-interactions and transitions for enhanced UX
 
-### 🔥 1. Real Voice Intelligence (Not Just Text-to-AI)
-Our system handles:
-- Live voice input  
-- Real-time transcription  
-- AI reasoning  
-- High-quality TTS output  
-- Continuous interactive streaming  
+### 💬 Chat Functionality
+- **Real-time Messaging**: Send and receive messages instantly
+- **Typing Indicators**: Visual feedback when AI is responding
+- **Message History**: Scrollable chat with smooth animations
+- **Auto-resize Input**: Textarea that grows with content
 
-Using Agora's low-latency Real-Time Engagement stack.
+### 🎤 Voice Features
+- **Voice Input**: Built-in microphone support for speech-to-text
+- **Recording Indicators**: Visual feedback during voice recording
+- **Speech Recognition**: Web Speech API integration
+- **Fallback Support**: MediaRecorder API as backup
+- **Real-time Voice Calls**: Agora RTC integration for live voice communication
+- **Call Controls**: Mute, speaker, and minimize functionality
+- **Voice Visualizer**: Audio level visualization during calls
 
----
+### 🔧 Backend Capabilities
+- **Real-time Audio Processing**: Handles voice streams through Agora Conversational AI
+- **LLM Integration**: Processes conversations with Large Language Models
+- **Text-to-Speech**: Converts AI responses to natural voice audio
+- **Session Management**: Manages multiple concurrent AI conversations
+- **Token Generation**: Secure Agora token generation and management
+- **WebSocket Communication**: Real-time bidirectional communication
+- **REST API**: HTTP endpoints for configuration and monitoring
 
-### 🔒 2. Enterprise-Grade Input Security
-Every message passes through a **full security validation layer**:
+### 📱 Mobile Optimization
+- **Touch-Friendly**: Large tap targets (minimum 44px)
+- **Gesture Support**: Swipe gestures and touch interactions
+- **Responsive Layout**: Adapts to all screen sizes
+- **Performance**: Optimized for mobile browsers
 
-- HTML/script sanitization  
-- JavaScript protocol removal  
-- Malicious code detection (eval/exec/shell)  
-- Spam detection (excess URLs, repeated characters)  
-- Emoji-only or gibberish filtering  
-- Message length validation  
+## Quick Start
 
-Most bots **don’t have any of these** protections.
+1. Open `index.html` in your web browser
+2. Start typing your message or click the microphone button
+3. Press Enter or click Send to send your message
+4. The AI will respond with a simulated response
+5. For voice calls, click the phone icon to start a real-time voice conversation
 
----
+### Voice Call Setup
 
-### 🧩 3. AI With Memory + Knowledge Base
-The AI agent uses:
+To enable voice calling functionality:
 
-- **10-message sliding memory window**  
-- **Supabase vector search knowledge base**  
-- **FlameAI-trained system prompt**  
-- **Groq Llama 3.1 8B Instant (super fast)**  
+1. Get your Agora App ID from [Agora Console](https://console.agora.io/)
+2. Replace `<YOUR_APP_ID>` in `script.js` with your actual App ID
+3. For production, replace `<YOUR_TOKEN>` with a valid token
+4. Configure the channel name if needed
 
-This makes responses:
-- Consistent  
-- Context-aware  
-- Company-specific  
-- Accurate  
-- Fast  
-
----
-
-### 🔁 4. Dual Response Formats (Automatic Detection)
-The agent outputs based on caller preference:
-- **SSE (Server-Sent Events)** for streaming voice apps  
-- **OpenAI-compatible JSON** for API apps  
-
-Automatically detected through:
-- Query params (`?format=json`)  
-- Request body (`stream: false`)  
-- Custom headers  
-
-Works across:
-- Websites  
-- Mobile apps  
-- Voice bots  
-- WhatsApp bots  
-- IVR systems  
-
----
-
-### 📊 5. Full Conversation Logging
-Every interaction is logged with:
-- User message  
-- AI response  
-- Session ID  
-- Response time  
-- Knowledge base used  
-- Error details  
-- Timestamp  
-
-Stored in Supabase for analytics & debugging.
-
----
-
-## 🧩 Full System Architecture
-
-```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   React Frontend│    │  Node.js Server │    │  Agora AI Agent │
-│                 │    │                 │    │                 │
-│  - Voice UI     │◄──►│  - Token Gen    │◄──►│  - ASR/TTS      │
-│  - Audio Stream │    │  - Agent Mgmt   │    │  - LLM Pipeline │
-│  - Status Ind.  │    │  - API Proxy    │    │  - Voice Synth  │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                                │
-                                ▼
-                       ┌─────────────────────────────┐
-                       │       N8N WORKFLOW          │
-                       │                             │
-                       │  - Input Validation         │
-                       │  - Security Filtering       │
-                       │  - AI Processing (Groq)     │
-                       │  - Knowledge Base Search    │
-                       │  - JSON / SSE Formatting    │
-                       │  - Logging (Supabase)       │
-                       └─────────────────────────────┘
+```javascript
+const AGORA_CONFIG = {
+    appId: 'YOUR_ACTUAL_APP_ID',
+    token: 'YOUR_ACTUAL_TOKEN', // null for development
+    channel: 'ai-assistant-channel'
+};
 ```
 
----
+## Browser Support
 
-## ⚙️ N8N Workflow — Detailed Breakdown
+- **Modern Browsers**: Chrome, Firefox, Safari, Edge
+- **Mobile Browsers**: iOS Safari, Chrome Mobile
+- **Features Required**:
+  - Web Speech API (for voice input)
+  - MediaRecorder API (fallback)
+  - Agora RTC SDK (for voice calls)
+  - CSS Grid and Flexbox
+  - ES6 JavaScript with module support
+  - HTTPS (required for microphone access and Agora RTC)
 
-### 1. 📨 Input Reception
-Webhook receives POST requests from Agora.
-
-Extracts:
-- user message  
-- session ID  
-- user ID  
-- past messages  
-
----
-
-### 2. 📄 Format Detection
-Decides between:
-- **SSE streaming** (default)  
-- **OpenAI-style JSON** (via query/body/header)  
-
----
-
-### 3. 🛡️ Security & Validation Layer  
-Blocks:
-- HTML/script tags  
-- `javascript:` URLs  
-- `eval`, `exec`, shells  
-- Malformed inputs  
-- Spam patterns  
-- Too-long or too-short text  
-- Emoji-only content  
-
-If invalid → error branch triggers.
-
----
-
-### 4. 🤖 AI Processing
-Valid messages go to the Groq-hosted Llama 3.1:
-
-- Custom system prompt  
-- Vector search through Supabase KB  
-- 10-message session memory  
-- Fast inference via Groq  
-
----
-
-### 5. 🧱 Response Formatting
-Switch node outputs:
-- SSE streaming payload  
-- OpenAI-compatible JSON  
-
----
-
-### 6. 📤 Response Delivery + Logging
-Sends reply to caller, then logs:
-
-- Input  
-- Output  
-- Model used  
-- Response time  
-- Session ID  
-- Errors  
-
-Stored in `conversation_logs` table.
-
----
-
-## 🗄️ Database Schema (Supabase)
-`conversation_logs` table fields:
-
-- session_id  
-- user_message  
-- ai_response  
-- response_time_ms  
-- knowledge_base_used  
-- error  
-- error_message  
-- timestamp  
-
----
-
-## 🏗️ Frontend Architecture
-
-### Features:
-- Real-time voice UI  
-- Microphone visualizer  
-- Connection status indicator  
-- Live agent state display  
-- Start/End conversation controls  
-
-### Main Components:
-- App.tsx  
-- useAgora.ts  
-- ControlButton.tsx  
-- StatusIndicator.tsx  
-- MicIcon.tsx  
-- PhoneIcon.tsx  
-
----
-
-## 🖥️ Backend (Node.js)
-
-Endpoints:
+## File Structure
 
 ```
-POST /generate-token  
-POST /start-agent  
-POST /stop-agent  
+├── index.html          # Main application
+├── styles.css          # Premium styling and animations
+├── script.js           # Chat functionality and interactions
+├── test.html           # Responsiveness testing
+└── README.md           # Documentation
 ```
 
-Handles:
-- Agora token generation  
-- Agent session management  
-- Proxy to N8N workflow  
+## Keyboard Shortcuts
 
----
+- **Enter**: Send message
+- **Shift + Enter**: New line in message
+- **Ctrl/Cmd + K**: Focus input field
+- **Escape**: Stop voice recording / Minimize call modal
 
-## 🛠️ Setup & Installation
+## Mobile Features
 
-### 1. Clone Repo
-```bash
-git clone <repository-url>
-cd ai-voice-support-assistant
-npm install
+### Touch Interactions
+- Tap to focus input
+- Long press for additional options
+- Swipe gestures for navigation
+- Haptic feedback support
+
+### Responsive Breakpoints
+- **Mobile**: < 480px
+- **Tablet**: 481px - 768px
+- **Desktop**: > 768px
+
+### Performance Optimizations
+- Debounced scroll events
+- Lazy loading for future features
+- Optimized animations
+- Memory leak prevention
+
+## Accessibility
+
+- **ARIA Labels**: Screen reader support
+- **Keyboard Navigation**: Full keyboard accessibility
+- **High Contrast**: Support for high contrast mode
+- **Reduced Motion**: Respects user's motion preferences
+- **Focus Management**: Proper focus handling
+
+## Security
+
+- **XSS Protection**: Safe HTML rendering
+- **Input Sanitization**: User input validation
+- **Secure Context**: HTTPS required for microphone access
+- **Permission Handling**: Proper media permissions
+- **Agora Security**: Token-based authentication for voice calls
+
+## Customization
+
+### Frontend Colors
+Edit the CSS variables in `styles.css`:
+
+```css
+:root {
+    --primary-black: #000000;
+    --secondary-black: #0a0a0a;
+    --accent-gold: #d4af37;
+    --accent-blue: #007aff;
+    /* ... */
+}
 ```
 
-### 2. Configure Environment
+### Frontend Animations
+Modify animation durations and easing:
 
-#### Update `constants.ts`
-```ts
-export const AGORA_APP_ID = 'your_agora_app_id';
-export const BACKEND_URL = 'http://localhost:3000';
+```css
+:root {
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
 ```
 
-#### Update `server.js`
-```js
-const APP_ID = 'your_agora_app_id';
-const APP_CERTIFICATE = 'your_app_certificate';
-const CUSTOMER_ID = 'your_customer_id';
-const CUSTOMER_SECRET = 'your_customer_secret';
+### Backend Configuration
+Customize AI behavior in `server.js`:
 
-const ELEVENLABS_API_KEY = 'sk_your_api_key';
-const ELEVENLABS_VOICE_ID = 'your_voice_id';
+```javascript
+// LLM Settings
+llmSettings: {
+    provider: 'openai',           // 'openai', 'anthropic', 'google'
+    model: 'gpt-4',            // Model name based on provider
+    maxTokens: 1000,             // Maximum response tokens
+    temperature: 0.7,            // Creativity level (0-1)
+    systemPrompt: `You are a helpful AI assistant...`
+}
 
-const N8N_WEBHOOK_URL = 'https://your-n8n.com/webhook/voice-input';
+// TTS Settings
+voiceSettings: {
+    provider: 'azure',            // 'azure', 'google', 'aws'
+    voice: 'en-US-JennyNeural', // Voice name based on provider
+    speed: 1.0,                  // Speech speed (0.5-2.0)
+    pitch: 1.0                   // Voice pitch (0.5-2.0)
+}
 ```
 
----
+## Testing
 
-## ▶️ Start the System
+Open `test.html` to view the application in different screen sizes:
 
-### Backend
-```bash
-node server.js
-```
+- iPhone SE (375x667)
+- iPhone 11 (414x896)
+- iPad (768x1024)
+- Desktop (1200x600)
+
+## Future Enhancements
 
 ### Frontend
-```bash
-npm run dev
-```
+- [ ] File upload support
+- [ ] Message reactions
+- [ ] Theme customization
+- [ ] Multi-language support
+- [ ] Offline mode
+- [ ] Push notifications
+- [ ] End-to-end encryption
 
-Open:  
-**http://localhost:5173**
+### Backend
+- [ ] Video calling support
+- [ ] Call recording
+- [ ] Multiple participant calls
+- [ ] Screen sharing
+- [ ] Advanced AI personalities
+- [ ] Conversation memory
+- [ ] Analytics and metrics
+- [ ] Load balancing
 
----
+## Contributing
 
-## 🎯 Usage
+### Frontend
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
-1. Click **Start Conversation**  
-2. Grant microphone access  
-3. Speak naturally  
-4. Watch real-time status indicators  
-5. End conversation anytime  
+### Backend
+1. Follow the same fork/branch workflow
+2. Add tests for new functionality
+3. Update API documentation
+4. Test with different AI providers
+5. Ensure security best practices
 
----
+## License
 
-## 🔧 Troubleshooting
+This project is open source and available under the [MIT License](LICENSE).
 
-### Agent not speaking?
-- Invalid ElevenLabs key or voice ID  
+## 📚 Documentation
 
-### "Failed to fetch" error?
-- Backend not running  
-- Incorrect BACKEND_URL  
-
-### Agora issues?
-- Wrong App ID/Certificate  
-
-### N8N workflow issues?
-- Wrong webhook URL  
-- Execution errors  
-
----
-
-## 🔒 Security Best Practices
-
-- Never commit API keys  
-- Use HTTPS  
-- Apply rate limiting  
-- Validate all inputs  
-- Secure CORS  
-
----
-
-## 🚀 Deployment
-
-### Production Deployment
-1. Move secrets to environment variables  
-2. Build frontend:
-   ```bash
-   npm run build
-   ```
-3. Serve static files with Nginx  
-4. Deploy backend + N8N  
+- **Frontend Guide**: See main README for UI/UX features
+- **Backend Guide**: See [BACKEND_README.md](BACKEND_README.md) for server setup
+- **API Documentation**: See backend documentation for endpoint details
+- **Deployment Guide**: See backend documentation for production setup
 
 ---
 
-## 🤝 Contributing
-
-- Fork  
-- Create branch  
-- Submit PR  
-
----
-
-## 📄 License  
-MIT License
+**Note**: This is a frontend demonstration. Voice recognition requires HTTPS in production environments.
